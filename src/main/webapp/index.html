@@ -1,11 +1,21 @@
 <html lang="en">
 <head>
 	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"">
+	<meta name="google-signin-client_id"
+	      content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+<br/>
+<label>id : </label><span id="id"></span><br/>
+<label>fullName : </label><span id="full-name"></span><br/>
+<label>givenName : </label><span id="given-name"></span><br/>
+<label>familyName : </label><span id="family-name"></span><br/>
+<label>imageUrl : </label><span id="image-url"></span><br/>
+<label>email : </label><span id="email"></span><br/>
+<label>idToken : </label><span id="id-token"></span>
+
 <script>
 	function onSignIn(googleUser) {
 		// Useful data for your client-side scripts:
@@ -20,7 +30,28 @@
 		// The ID token you need to pass to your backend:
 		var id_token = googleUser.getAuthResponse().id_token;
 		console.log("ID Token: " + id_token);
-	};
+
+		var id = document.getElementById('id');
+		id.innerText = profile.getId();
+
+		var fullName = document.getElementById('full-name');
+		fullName.innerText = profile.getName();
+
+		var givenName = document.getElementById('given-name');
+		givenName.innerText = profile.getGivenName();
+
+		var familyName = document.getElementById('family-name');
+		familyName.innerText = profile.getFamilyName();
+
+		var imageUrl = document.getElementById('image-url');
+		imageUrl.innerText = profile.getImageUrl();
+
+		var email = document.getElementById('email');
+		email.innerText = profile.getEmail();
+
+		var idToken = document.getElementById('id-token');
+		idToken.innerText = id_token;
+	}
 </script>
 </body>
 </html>
